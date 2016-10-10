@@ -50,7 +50,7 @@ tat-new-version
 commit-msg
 ==========
 
-To install just link `commit-msg` into your projet git hook folder:
+To install just link `commit-msg` into your projet git hook folder::
 
     # cd /my/python/lib/root
     # ln -s /where/is/commit-msg .git/hooks
