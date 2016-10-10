@@ -10,15 +10,15 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='tat-new-version',
+    name='tat-pytools',
     version=open('VERSION', 'r').read().strip(),
-    description="TAT versionning",
+    description="TAT python tools",
     long_description="",
     classifiers=["Programming Language :: Python", ],
     keywords='',
     author='Cedric DUMAY',
     author_email='cedric.dumay@gmail.com',
-    url='https://github.com/cdumay/tat-new-version',
+    url='https://github.com/cdumay/tat-pytools',
     license='Apache2',
     packages=find_packages('src'),
     package_dir={'': 'src'},
@@ -27,6 +27,7 @@ setup(
     install_requires=open('requirements.txt', 'r').read().strip(),
     entry_points="""
 [console_scripts]
-tat-new-version = tat_new_version:main
+tat-new-version = tat_pytools.new_version:main
+commit-msg = tat_pytools.commit_hook:main
 """,
 )

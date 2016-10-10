@@ -1,8 +1,12 @@
-********************************************************
-TATwebui release updater with Jira commit message sample
-********************************************************
+**************************************************
+TATwebui release tools for python libs development
+**************************************************
 
-Script to add new release in TAT and a commit message for jira tickets.
+This python library is a bundle of scripts to facilitate python library
+development. It provide:
+
+* **tat-new-version**: a binary to create a new release.
+* **commit-msg**: a git hook to send commit messages in TAT.
 
 ==============
 Required files
@@ -27,9 +31,9 @@ TOPIC
         "tatwebui_url": "http://tat.example.com/ui/releaseview/list"
     }
 
-=====
-Usage
-=====
+===============
+tat-new-version
+===============
 
 .. code-block::
 
@@ -41,3 +45,27 @@ Usage
     INFO    : Message created in /myTopic
     INFO    : JIRA-MSG updated
     INFO    : Version file updated
+
+==========
+commit-msg
+==========
+
+To install just link `commit-msg` into your projet git hook folder:
+
+    # cd /my/python/lib/root
+    # ln -s /where/is/commit-msg .git/hooks
+
+.. code-block::
+
+    # cd /my/python/lib/root
+    # git commit -am 'feat: This is a test'
+
+.. note::
+
+    To disable TAT send, just prefix your commit message with `devel`
+
+You can link jira ticket using a `#<TicketName>` to generate a jira link.
+
+.. _example:
+
+    # git commit -am 'feat: This is a test (#TICKET-ID)'
