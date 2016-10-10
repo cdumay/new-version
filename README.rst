@@ -55,6 +55,7 @@ To install just link `commit-msg` into your projet git hook folder::
     # cd /my/python/lib/root
     # ln -s /where/is/commit-msg .git/hooks
 
+
 .. code-block::
 
     # cd /my/python/lib/root
@@ -62,10 +63,10 @@ To install just link `commit-msg` into your projet git hook folder::
 
 .. note::
 
-    To disable TAT send, just prefix your commit message with `devel`
+    To disable TAT send, just prefix your commit message with **devel**
 
-You can link jira ticket using a `#<TicketName>` to generate a jira link.
+You can link jira ticket using a *#<TicketName>* to generate a jira link:
 
-.. _example:
+.. code-block::
 
     # git commit -am 'feat: This is a test (#TICKET-ID)'
