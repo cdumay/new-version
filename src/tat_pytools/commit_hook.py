@@ -16,13 +16,6 @@ from tat_pytools.common import TatManager
 
 
 class CommitHook(TatManager):
-    _version = None
-
-    @property
-    def version(self):
-        if self._version is None:
-            self._version = open(self.file_version, 'r').read().strip()
-        return self._version
 
     def tat_reply(self, parent_id, content):
         self.tat_client.do_request(

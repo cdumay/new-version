@@ -21,7 +21,14 @@ class TatManager(object):
         self._tat_client = None
         self.project = os.path.basename(os.path.realpath(os.curdir))
         self._new_version = None
+        self._version = None
 
+    @property
+    def version(self):
+        if self._version is None:
+            self._version = open(self.file_version, 'r').read().strip()
+        return self._version
+    
     def check_configuration(self):
         result = True
         if self.configuration:

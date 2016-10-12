@@ -29,5 +29,6 @@ setup(
 [console_scripts]
 tat-new-version = tat_pytools.new_version:main
 commit-msg = tat_pytools.commit_hook:main
+tat-annonce = tat_pytools.annonce:main
 """,
 )
