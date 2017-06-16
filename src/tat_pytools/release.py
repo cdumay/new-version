@@ -7,6 +7,7 @@
 
 """
 import logging
+import re
 from tat_pytools.common import TatManager
 
 
@@ -15,25 +16,28 @@ class ReleaseDisplay(TatManager):
         # we disable logs
         logging.root.setLevel(logging.ERROR)
         if self.check_configuration() is True:
-            data = self.tat_client.do_request(
+            releases = self.tat_client.do_request(
                 method="GET",
                 path="/messages{topic}".format_map(self.tat_configuration),
-                params=dict(
-                    skip=0, limit=1, tag="release:{}".format(self.version)
-                )
+                params=dict(skip=0, limit=3, startTag="release:")
             ).get('messages', list())
 
-            if len(data) > 0:
-                print("Release: {}".format(self.version))
+            regexp = re.compile(r"#release:(.*?)$")
+            for release in releases:
+                print("Release: {} [{}]".format(
+                    regexp.match(release["text"]).group(1),
+                    release["labels"][0]["text"]
+                ))
                 replies = self.tat_client.do_request(
                     method="GET",
                     path="/messages{topic}".format_map(self.tat_configuration),
                     params=dict(
-                        skip=0, inReplyOfIDRoot=data[0]["_id"]
+                        skip=0, inReplyOfIDRoot=release["_id"]
                     )
                 ).get('messages', list())
                 for reply in replies:
                     print("- {}".format(reply["text"][1:]))
+                print("")
 
 
 def main():
