@@ -30,5 +30,6 @@ setup(
 tat-new-version = tat_pytools.new_version:main
 commit-msg = tat_pytools.commit_hook:main
 tat-annonce = tat_pytools.annonce:main
+release-display = tat_pytools.release:main
 """,
 )
