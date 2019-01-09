@@ -11,19 +11,13 @@ from distutils.version import StrictVersion
 from tat_pytools.common import TatManager
 
 
-class VersionUpgrade(TatManager):
+class ManualVersion(TatManager):
     @property
     def new_version(self):
         if self._new_version is None:
-            self._new_version = self.get_next_version()
+            self._new_version = self.version
 
         return self._new_version
-
-    def get_next_version(self):
-        version = list(StrictVersion(
-            open(self.file_version, 'r').read().strip()).version)
-        version[2] += 1
-        return "{}.{}.{}".format(*version)
 
     def wrote_version(self):
         open(self.file_version, 'w').write(self.new_version)
@@ -68,5 +62,24 @@ class VersionUpgrade(TatManager):
         self.wrote_version()
 
 
-def main():
+class VersionUpgrade(ManualVersion):
+    @property
+    def new_version(self):
+        if self._new_version is None:
+            self._new_version = self.get_next_version()
+
+        return self._new_version
+
+    def get_next_version(self):
+        version = list(StrictVersion(
+            open(self.file_version, 'r').read().strip()).version)
+        version[2] += 1
+        return "{}.{}.{}".format(*version)
+
+
+def new():
     VersionUpgrade().run()
+
+def current():
+    """description of current"""
+    ManualVersion().run()

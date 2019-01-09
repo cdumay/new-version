@@ -27,9 +27,12 @@ setup(
     install_requires=open('requirements.txt', 'r').read().strip(),
     entry_points="""
 [console_scripts]
-tat-new-version = tat_pytools.new_version:main
+tat-new-version = tat_pytools.new_version:new
+tat-push-version = tat_pytools.new_version:current
+tat-message = tat_pytools.message:main
 commit-msg = tat_pytools.commit_hook:main
 tat-annonce = tat_pytools.annonce:main
 release-display = tat_pytools.release:main
+release-current = tat_pytools.release:last
 """,
 )
